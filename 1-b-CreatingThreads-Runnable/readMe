@@ -1,0 +1,29 @@
+
+  -------------------------------------------------------------------
+
+
+   Output      : Main Function
+	             Response from Database
+   
+   Observation : Main thread do not wait for Child Thread
+                 If thread1.join(); uncommented : it will allow sequential execution of threads 
+   
+ 
+  -------------------------------------------------------------------
+
+
+ //Using MyRunnableExample as Anonymous inner class
+ 
+    Runnable runnable = new Runnable() {
+		public void run() {
+		    // Perform Asynchronous Long Running Task
+			System.out.print("Response from Database");
+		}
+	};
+	
+	new Thread(runnable).start();
+	
+	System.out.println("Main Function");
+	
+
+	

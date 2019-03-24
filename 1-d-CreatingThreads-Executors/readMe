@@ -1,0 +1,79 @@
+	/**
+	 * Need for Executor : 
+   *
+   * for(i=0;i<100;i++){
+   *    thread.start()
+   * }
+
+   * Above Java program creates 100 separate OS threads
+	 * 
+	 * Thread Pool Advantage : 
+   * So,Create a fixed number of threads,say 10 threads and 
+   * submit 100 tasks to them , A thread will be reused once IDLE
+	 *
+	 */
+	 
+
+                                              Types of Thread Pools created using Executors
+   
+ 
+ ------------------------------------ 1)newFixedThreadPool(int poolsize) ------------------------------------------
+   
+   
+   
+   - Creates a Fixed thread pool that 
+     Reuses a Fixed number of threads i.e 
+     Only 10 threads are created and a thread is used again only if IDLE
+   
+   - Use case : 
+     : Can configure for CPU Intensive tasks : 
+
+     : Integer coreCount = Runtime.getRuntime().availableProcessors();
+       ExecutorService executor = Executors.newFixedThreadPool(coreCount);
+   
+   
+   
+ -----------------------------------------------  2)newCachedThreadPool()-------------------------------------------
+   
+   
+   
+  - Creates a Expandable having an expandable thread pool that 
+    creates new thread when none of the previous created thread are IDLE, but will reuse previously constructed threads if IDLE
+   
+   
+  - Use case :
+    : suitable for applications that launch many short-lived tasks.
+
+    : ExecutorService executor = Executors.newCachedThreadPool(); 
+   
+ 
+
+ -------------------------------------------------3)newSingleThreadExecutor()-----------------------------------------
+
+  
+  - Creates an Executor woth only One single worker thread
+  
+  - Use case : 
+    : As you have only one Thread to handle all your request
+      You want to execute the submitted tasks in a sequence.
+   
+    : ExecutorService executor = Executors.newSingleThreadExecutor();
+
+   
+
+  ---------------------------------------- 4)newScheduledThreadPool(int poolsize) -------------------------------------
+ 
+
+  - Creates a thread pool that can schedule commands to run after a given delay, or to execute periodically.
+   
+
+  - Use case : 
+
+    ScheduledExecutorService executor = Executors.newScheduledThreadPool(5);
+
+   - Executing runnable after a fixed delay                  :: executor.schedule(runnable, 2 , TimeUnit.SECONDS) :     
+   
+   - Executing runnable after a fixed delay and periodically :: executor.scheduleAtFixedRate(runnable, 2 ,2, TimeUnit.SECONDS); :
+    
+ 
+ 

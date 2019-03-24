@@ -1,0 +1,72 @@
+
+  -------------------------------------------------------------------
+
+1 - Difference Thread vs Runnable 
+
+    : When we extend Thread class, we can’t extend any other class 
+    
+    : We can implement many Runnbales interfaces 
+    
+  -------------------------------------------------------------------
+
+2 - Difference Runnbale and Callable 
+
+    : run()  method return type is void 
+      call() method can return values
+      
+    : run()  method cannot throw checked exception 
+      call() method can throw checked exception 
+      
+      
+  --------------------------------------------------------------------  
+    
+    
+   Output      : Response From Callable Task : Response from Database
+			     Main Function
+   
+   
+   Observation : Main thread waits for child thread to complete
+   
+                 Callable is asynchronous like Runnable BUT
+                 Future's get() method is synchronous therefore Main thread waits for Callable task to complete.
+                 
+                 To Execute Callback asynchronously use below code : 
+                 
+                 Callable<String> callableObj = new Callable<String>(){
+						@Override
+						public String call() throws Exception {
+							Thread.sleep(2000L);
+			                return "Response from Database";
+						}
+				  };
+
+ 
+ --------------------------------------------------------------------  
+
+
+   executor.execute(runnable);  
+   executor.submit(runnable | callable);  
+ 
+ 
+ --------------------------------------------------------------------  
+ 
+
+  //Using MyCallableExample code  as Anonymous Inner Classes : 
+  
+  ExecutorService executor = Executors.newScheduledThreadPool(10);
+  
+  Future<String> future = executor.submit(new Callable<String>() {
+		   public String call() throws Exception {
+		       Thread.sleep(2000L);
+		        return "Response from Database";
+		    }
+          });
+
+  System.out.println("result = " + future.get());
+
+  executor.shutdown();
+
+  
+  
+  
+  

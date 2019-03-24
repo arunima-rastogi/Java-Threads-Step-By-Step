@@ -1,0 +1,8 @@
+You can use them to manage resource pools with more than one entry, or allow multiple consumer threads to block on a producer.
+
+With a resource pool, you set the count to its total size on intialization, decrement by one for each allocation, and increment by one for each free. Any number of threads can block on the pool, but the number active can’t exceed the number of resources.
+
+In a producer/consumer situation you can associate a counting semaphore with a container (typically a queue), increment after insert, and decrement before removal.
+
+
+
