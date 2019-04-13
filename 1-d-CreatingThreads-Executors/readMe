@@ -77,3 +77,41 @@
     
  
  
+ -------------------------------------------------------------------------------------------------------------------------
+ invokeAll() : Executing Multiple Threads using ExecutorService
+ 
+ 
+               ExecutorService executorService = Executors.newSingleThreadExecutor();
+
+		Set<Callable<String>> callables = new HashSet<Callable<String>>();
+
+		callables.add(new Callable<String>() {
+		    public String call() throws Exception {
+		    	Thread.sleep(5000);
+		        return "Task 1";
+		    }
+		});
+		
+		callables.add(new Callable<String>() {
+		    public String call() throws Exception {
+		    	Thread.sleep(2000);
+		    	//throw new Exception();
+		        return "Task 2";
+		    }
+		});
+		
+		callables.add(new Callable<String>() {
+		    public String call() throws Exception {
+		    	Thread.sleep(10000);
+		        return "Task 3";
+		    }
+		});
+
+		List<Future<String>> futures  = executorService.invokeAll(callables);;
+
+		for(Future<String> future : futures){
+		    System.out.println("future.get = " + future.get());
+		}
+
+		executorService.shutdown();
+ 
