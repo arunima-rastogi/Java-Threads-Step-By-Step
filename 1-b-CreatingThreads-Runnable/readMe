@@ -25,5 +25,32 @@
 	
 	System.out.println("Main Function");
 	
+------------------------------------------------------------
+
+Passing Data to runnable Task 
+
+MyRunnable.java
+public class MyRunnable implements Runnable {
+
+   String str;
+   
+   public MyRunnable(String str) {
+    this.str = str;
+  }
+  
+    @Override
+     public void run() {
+	someFunc(str);
+     }
+     
+     public void someFunc(String str){
+     
+     }
+}
+
+MyMain.java
+Runnable runnable = new MyRunnable("Abhishek");
+Thread thread1 = new Thread(runnable, "Thread 1");
+thread1.start(); // Run the thread Asynchronously
 
 	
