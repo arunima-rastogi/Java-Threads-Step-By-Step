@@ -129,3 +129,31 @@ invokeAny(List of Callables)
 
 Source :http://tutorials.jenkov.com/java-util-concurrent/executorservice.html#invokeall
 
+Using Java 8 
+
+//1-Using Runnable : No Return Type, Cannot throw exception
+ExecutorService executorService = Executors.newSingleThreadExecutor();
+executorService.submit(() -> {
+  try {
+    Thread.sleep(2000L);
+    System.out.println("Executing Task in Runnable Thread");
+  }
+  catch (InterruptedException e) {
+    e.printStackTrace();
+   }
+});
+
+
+//2-Using Callable : Return Type of Future, Can throw exception,so no need for try/catch block 
+ExecutorService executorService = Executors.newSingleThreadExecutor();
+
+Future<String> future = executorService.submit(() -> {
+   Thread.sleep(2000L);
+   return "Executing Task in Callable Thread";
+});
+		
+System.out.println(future.get());
+
+
+
+//3-Using CompletableFture 
