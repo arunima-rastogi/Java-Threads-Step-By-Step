@@ -152,8 +152,11 @@ Future<String> future = executorService.submit(() -> {
    return "Executing Task in Callable Thread";
 });
 		
-System.out.println(future.get());
+System.out.println("result = " + future.get());
+
+executor.shutdown();
 
 
 
 //3-Using CompletableFture 
+
