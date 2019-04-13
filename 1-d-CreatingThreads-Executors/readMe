@@ -115,3 +115,13 @@
 
 		executorService.shutdown();
  
+
+-------------------------------
+
+Types of Methods in ExecutorService to execute Threads : 
+
+execute(Runnable)
+submit(Runnable)
+submit(Callable)
+invokeAny(List of Callables)
+invokeAll(List of Callables)
