@@ -129,10 +129,11 @@ invokeAny(List of Callables)
 
 Source :http://tutorials.jenkov.com/java-util-concurrent/executorservice.html#invokeall
 
+-----------------------------------------------------------------------------------------------------------
 Using Java 8 
-
+-----------------------------------------------------------------------------------------------------------
 //1-Using Runnable : No Return Type, Cannot throw exception
-ExecutorService executorService = Executors.newSingleThreadExecutor();
+ExecutorService executorService = Executors.newCachedThreadPool();
 executorService.submit(() -> {
   try {
     Thread.sleep(2000L);
@@ -143,9 +144,10 @@ executorService.submit(() -> {
    }
 });
 
+-------------------------------------------------------------------------------------------------
 
 //2-Using Callable : Return Type of Future, Can throw exception,so no need for try/catch block 
-ExecutorService executorService = Executors.newSingleThreadExecutor();
+ExecutorService executorService = Executors.newCachedThreadPool();
 
 Future<String> future = executorService.submit(() -> {
    Thread.sleep(2000L);
@@ -156,7 +158,27 @@ System.out.println("result = " + future.get());
 
 executor.shutdown();
 
-
-
+--------------------------------------------------------------------------------------------------
 //3-Using CompletableFture 
 
+i)Using Supplier   : Has a method 'get()'    : that accepts no  argument and returns an object.  
+
+ExecutorService executor = Executors.newCachedThreadPool();
+		
+CompletableFuture<String> future = CompletableFuture.supplyAsync(new Supplier<String>() {
+   @Override
+    public String get() {
+       try {
+	  Thread.sleep(2000L);
+	  return "Executing Task1 in seperate Thread";
+	} 
+       catch (InterruptedException e) {
+	  System.out.println("Exception Occured");
+       }
+				 
+      return "Exception Occured in case of Failures";
+   }
+}, executor);
+		
+		
+		System.out.println(future.get());
