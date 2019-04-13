@@ -120,8 +120,9 @@
 
 Types of Methods in ExecutorService to execute Threads : 
 
-execute(Runnable)
-submit(Runnable)
-submit(Callable)
+execute(Runnable)  : Multiple runnables are submitted in multiple execute() methods 
+submit(Runnable)   : Multiple runnables are submitted in multiple submit() methods
+submit(Callable)   : Multiple callables are submitted in multiple submit() methods
+invokeAll(List of Callables) : : Multiple callables are submitted in ONE invokeAll() method
 invokeAny(List of Callables)
-invokeAll(List of Callables)
+
