@@ -3,7 +3,7 @@
 
 1 - Difference Thread vs Runnable 
 
-    : When we extend Thread class, we can’t extend any other class 
+    : When we extend Thread class, we canâ€™t extend any other class 
     
     : We can implement many Runnbales interfaces 
     
@@ -53,7 +53,7 @@
 
   //Using MyCallableExample code  as Anonymous Inner Classes : 
   
-  ExecutorService executor = Executors.newScheduledThreadPool(10);
+  ExecutorService executor = Executors.newCachedThreadPool();
   
   Future<String> future = executor.submit(new Callable<String>() {
 		   public String call() throws Exception {
@@ -67,6 +67,79 @@
   executor.shutdown();
 
   
+-------------------------------------
+
+  //Using MyCallableExample code Using Lamda Expression : 
+       ExecutorService executorService = Executors.newCachedThreadPool();
+
+	Future<String> future = executorService.submit(() -> {
+	   Thread.sleep(2000L);
+	   return "Response from Database";
+	});
+
+	System.out.println("result = " + future.get());
+
+	executor.shutdown();
+
+
   
-  
-  
+ ----------------------------------------
+ 
+ //List of callables 
+ 
+ ------------- Way 1 : Using Submit() -----------------------------
+ ExecutorService executorService = Executors.newCachedThreadPool();
+ 
+ Future<String> future1 = executorService.submit(() -> {
+	Thread.sleep(5000L);
+	return "Executing Task1 in Callable Thread";
+ });
+		
+ Future<String> future2 = executorService.submit(() -> {
+	Thread.sleep(4000L);
+	return "Executing Task2 in Callable Thread";
+ });
+		
+System.out.println(future1.get());
+System.out.println(future2.get());
+
+executor.shutdown();
+
+ ------------- Way 2 : Using invokeAll() -----------------------------
+ 
+ ExecutorService executorService = Executors.newCachedThreadPool();
+ 
+ Set<Callable<String>> callables = new HashSet<Callable<String>>();
+
+ callables.add(new Callable<String>() {
+    public String call() throws Exception {
+	Thread.sleep(5000);
+	return "Executing Task1 in Callable Thread";
+     }
+  });
+		
+ callables.add(new Callable<String>() {
+     public String call() throws Exception {
+	 Thread.sleep(2000);
+	 return "Executing Task2 in Callable Thread";
+     }
+  });
+	
+  List<Future<String>> futures  = executorService.invokeAll(callables);;
+
+  for(Future<String> future : futures){
+	System.out.println(future.get());
+  }
+
+executorService.shutdown();
+ 
+ 
+
+
+
+
+
+ 
+ 
+ 
+ 
