@@ -16,8 +16,8 @@ public class Consumer implements Runnable {
 	public void run() {
 		while (true) {
 			try {
+				TimeUnit.SECONDS.sleep(2);
 				System.out.println("Consumed ->" + sharedQ.take());
-				TimeUnit.SECONDS.sleep(1);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
