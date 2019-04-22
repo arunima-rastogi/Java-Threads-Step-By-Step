@@ -9,7 +9,7 @@ public class MyRunnableExample {
 
 		thread1.start(); // Run the thread Asynchronously
 		
-       //thread1.join();
+               //thread1.join();
         
 		System.out.println("Main Function : " + Thread.currentThread().getName());
 
