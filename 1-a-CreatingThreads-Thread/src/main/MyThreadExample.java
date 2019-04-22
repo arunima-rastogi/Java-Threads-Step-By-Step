@@ -13,13 +13,27 @@ public class MyThreadExample {
 
 /** 
  * Using Anonymous Inner Class
- * 
- * new Thread(){
+   
+   new Thread(){
     public void run() {
-        // Perform Asynchronous Long Running Task
-		System.out.println("Response from Database");
+	System.out.println("Response from Database");
     }
    }.start();
    
    System.out.println("Main Thread");
+   
  */
+
+/**
+ *Using  Lambda Runnable
+  
+    Runnable runnable = () -> { System.out.println("Response from Database"); };
+    new Thread(runnable).start();
+
+*/
+
+ Output : 
+  
+  Main Thread Start  : main
+  Main Thread Finish : main
+  Response from Database from seperate thread : Thread-0
