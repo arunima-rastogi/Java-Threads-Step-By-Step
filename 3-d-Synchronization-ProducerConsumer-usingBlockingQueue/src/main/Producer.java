@@ -14,18 +14,18 @@ public class Producer implements Runnable {
 
 	@Override
 	public void run() {
-		// while (true) {
-		for (int i = 0; i < 5; i++) {
-			try {
-				sharedQ.put(i);
-				TimeUnit.SECONDS.sleep(1);
-				System.out.println("Produced -> " + i);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+		while (true) {
+			for (int i = 0; i < 5; i++) {
+				try {
+					TimeUnit.SECONDS.sleep(2);
+					sharedQ.put(i);
+					System.out.println("Produced -> " + i);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 
+			}
 		}
-		// }
 	}
 
 }
