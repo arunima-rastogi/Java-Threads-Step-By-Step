@@ -1,5 +1,6 @@
 package main;
 
+//Using Builder Pattern
 public class ImmutableEmployee {
 
 	private final String name;
@@ -55,3 +56,21 @@ public class ImmutableEmployee {
 	}
 
 }
+
+
+/**
+>Class:  final
+>All Fields : Private and Final
+>1 parametrized and Getter Methods (No setter Methods)
+
+Note : If Immutable Class has Non-Immutable reference Object  :https://codepumpkin.com/immutable-class-with-mutable-member-fields-in-java/
+
+in its Getter method : return address.clone() 
+
+Address Class must implement clonable Interface
+
+
+
+
+
+**/
