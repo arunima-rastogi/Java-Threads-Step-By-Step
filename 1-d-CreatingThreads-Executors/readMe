@@ -1,34 +1,42 @@
   /**
-   * Need for Executor : 
-   * Every time a task is executed a Thread is created 
-   * Creating and starting a thread can be an expensive process
-   *
-   * Example : Below code creates 100 separate OS threads
-   *      for(i=0;i<100;i++){
-   *        thread.start()
-   *      }
-   * 
-   *
-   * Thread Pool Advantage : 
-   * So,Create a fixed number of threads in a Thread-Pool,say 10 threads created in a thread Pool.
-   * submit 100 tasks to them ,
-   * All 10 threads execute the task and returns back to Pool.
-   * These IDLE threads in the pool can be reused to execute pending tasks
-   * 
-   * This mechanism is especially helpful in systems that execute a large number of small tasks.
-   *
+  
+    1 - Need for Executor : 
+    
+    Every time a task is executed a Thread is created 
+    Creating and starting a thread can be an expensive process
+   
+    Example : Below code creates 100 separate OS threads
+         for(i=0;i<100;i++){
+           thread.start()
+         }
+    
+   
+    Thread Pool Advantage :
+    
+    So,Create a fixed number of threads in a Thread-Pool,say 10 threads created in a thread Pool.
+    submit 100 tasks to them ,
+    All 10 threads execute the task and returns back to Pool.
+    These IDLE threads in the pool can be reused to execute pending tasks
+    
+    This mechanism is especially helpful in systems that execute a large number of small tasks.
+   
+ 
+   --------------------------------------------------------------------------------------------------------------------
+   
+   2 - Java Implementation of Thread Pools : 
+   
+      I)The Executors class and Executor interface :  Now the Types of Thread Pools created using Executors are 
+	   >Executors.newFixedThreadPool(10)     : Creates a Fixed thread pool
+	   >Executors.newCachedThreadPool()      : Creates a Expandable(On Demand) thread pool 
+	   >Executors.newSingleThreadExecutor()  : Creates an Executor woth only One single worker thread : used in sequential execution of tasks 
+	   >Executors.newScheduledThreadPool(10) : Creates a thread pool that can schedule commands to run after a given delay, or to execute periodically.
+
+       II)Fork-Join Pool 
+          The fork/join framework is based on a “work-stealing algorithm”. 
+	  In simple terms, what this means is that threads that run out of tasks can “steal” work from other busy threads.
+	  This “steal” work algorithm ensures that all CPUs are optimally used.
+    
    */
-	 
-   
-   Now the Types of Thread Pools created using Executors are 
-   >Executors.newFixedThreadPool(10)     : Creates a Fixed thread pool
-   >Executors.newCachedThreadPool()      : Creates a Expandable(On Demand) thread pool 
-   >Executors.newSingleThreadExecutor()  : Creates an Executor woth only One single worker thread : used in sequential execution of tasks 
-   >Executors.newScheduledThreadPool(10) : Creates a thread pool that can schedule commands to run after a given delay, or to execute periodically.
-   
- 
- 
- 
  ------------------------------------ 1)newFixedThreadPool(int poolsize) ------------------------------------------
    
    
