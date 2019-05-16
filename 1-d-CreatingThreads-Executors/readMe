@@ -35,6 +35,14 @@
           The fork/join framework is based on a “work-stealing algorithm”. 
 	  In simple terms, what this means is that threads that run out of tasks can “steal” work from other busy threads.
 	  This “steal” work algorithm ensures that all CPUs are optimally used.
+	  
+	  
+	  
+	 
+   3 - Comparing ThreadPoolExecutor and ForkJoinPool 
+      
+     - ThreadPoolExecutor provides more control over the number of threads and the tasks that are executed by each thread. This makes it more suitable for cases when you have a smaller number of larger tasks that are executed on their own threads.
+     - ForkJoinPool is based on threads “stealing” tasks from other threads. Because of this, it is best used to speed up work in cases when tasks can be broken up into smaller tasks.
     
    */
  ------------------------------------ 1)newFixedThreadPool(int poolsize) ------------------------------------------
