@@ -26,6 +26,7 @@
    ---------------------------------
    
    Potential Risks of Using a Thread Pool : 
+   
    Although thread pools provide significant advantages, you can also encounter several problems while using one, such as:
    
    i)Using a thread pool that is too large or too small – if the thread pool contains too many threads, 
@@ -42,6 +43,23 @@
    To mitigate these risks, you have to choose the thread pool type and parameters carefully, according to the tasks that they will handle.
    
  
+  ---------------------------------------
+  
+  Choosing Pool-Size 
+  
+  i)CPU Instensive  : Such as complex-Computing tasks (Iterating and transforming Large List)
+  
+                    : Ideal Pool size cshould be "No. of CPU Core count"
+  
+  
+  ii)IO Intensive   : Such as HTTP-calls , DB-calls or any Network calls  
+  
+                    : Ideal Pool size should be "Large".
+                       Because if one Thread takes time to return Response,
+		       Application can use Remaining Threads in the pool
+  
+  
+  
    --------------------------------------------------------------------------------------------------------------------
    
    2 - Java Implementation of Thread Pools : 
